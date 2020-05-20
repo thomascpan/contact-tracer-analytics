@@ -124,9 +124,9 @@ def preprocess(filepath: str, days: int = 7) -> pd.core.frame.DataFrame:
 
 
 def main():
-    filepath = "mta_1706.csv"
+    filepath = "data/mta_1706.csv"
+
     df = preprocess(filepath)
-    # df.to_csv("final.csv", index=False, header=COLUMN_NAMES)
 
     G = nx.from_pandas_edgelist(df)
     pr = sortPageRank(nx.pagerank(G, 0.4))
@@ -137,8 +137,7 @@ def main():
 
     print("rank\tid\tscore")
     for i, (k, v) in enumerate(rankedCC.items(), 1):
-        print("%d\t%s\t%f" %(i, k, v))
-
+        print("%d\t%s\t%f" % (i, k, v))
 
 
 if __name__ == "__main__":
